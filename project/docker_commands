@@ -1,11 +1,42 @@
 ## Docker commands used to build the application 
 # TODO: insert the docker build command
+docker build . -t techtrends
 
 ## Docker commands used to run the application
 # TODO: insert the docker run command
 
+docker run -d -p 7111:3111 techtrends
+
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
 
+docker container logs 65daf09ed4f4
+
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container 
+
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+INFO:werkzeug: * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 204-000-437
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:20] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:29] "GET /create HTTP/1.1" 200 -
+INFO: app [2021-09-09 02:37:38,943] - new article is created, title: new title
+INFO:app:new article is created, title: new title
+INFO: app [2021-09-09 02:37:38,943] - new article is created, title: new title
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:39] "POST /create HTTP/1.1" 302 -
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:39] "GET / HTTP/1.1" 200 -
+INFO: app [2021-09-09 02:37:52,591] - "About Us" page is retrieved
+INFO: app [2021-09-09 02:37:52,591] - "About Us" page is retrieved
+INFO:app:"About Us" page is retrieved
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:52] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:37:57] "GET /metrics HTTP/1.1" 200 -
+INFO: app [2021-09-09 02:38:06,958] - health Status request successfull
+INFO: app [2021-09-09 02:38:06,958] - health Status request successfull
+INFO:app:health Status request successfull
+INFO:werkzeug:172.17.0.1 - - [09/Sep/2021 02:38:06] "GET /healthz HTTP/1.1" 200 -
