@@ -3,15 +3,23 @@ kind: Deployment
 metadata:
   name: techtrends
   namespace: sandbox
+  labels:
+    app: techtrends
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: techtrends
   template:
+    metadata:
+      labels:
+        app: techtrends
     spec:
       containers:
       - image: mengjinfeng0331/techtrends:latest
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: techtrends
-        containerPort: 3111
+        ports:
+          containerPort: 3111
         resources:
           requests:
             cpu: 250m
