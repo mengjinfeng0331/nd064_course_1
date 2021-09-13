@@ -1,19 +1,16 @@
+AppName: techtrends
 namespace:
   name: sandbox
-
 service:
   port: 4111
   targetPort: 3111
   protocol: TCP
   type: ClusterIP
-
 image:
   repository: mengjinfeng0331/techtrends
   tag: latest
   pullPolicy: IfNotPresent
-
 replicaCount: 1
-
 resources:
   requests:
     cpu: 250m
@@ -21,14 +18,8 @@ resources:
   limits:
     cpu: 500m
     memory: 128Mi
-
 containerPort: 3111
-
 livenessProbe:
   path: /healthz
-
 readynessProbe:
   path: /healthz
-    
-  
-
