@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: techtrends
-  namespace: {{ .Values.namespace.name }}
   labels:
     app: techtrends
+  name: techtrends
+  namespace: {{ .Values.namespace.name }} 
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }} 
   selector:
     matchLabels:
       app: techtrends
@@ -21,9 +21,6 @@ spec:
         name: techtrends
         ports:
         - containerPort: {{ .Values.containerPort }}
-        resources:
-{{ toYaml .Values.resources | indent 12 }}
-
         livenessProbe:
           httpGet:
             path: {{ .Values.livenessProbe.path }}
@@ -31,4 +28,6 @@ spec:
         readinessProbe:
           httpGet:
             path: {{ .Values.livenessProbe.path }}
-            port: {{ .Values.containerPort }}
+            port: {{ .Values.containerPort }}        
+        resources:
+{{ toYaml .Values.resources | indent 12 }}

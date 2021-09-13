@@ -1,8 +1,8 @@
 apiVersion: v1
 name: techtrends
 keywords:
-- techtrends
+- techtrends 
 version: 1.0.0
 maintainers:
-- name: jinfeng meng 
+- name: jmeng 
   email: mengjinfeng0331@gmail.com
