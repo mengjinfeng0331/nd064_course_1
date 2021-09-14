@@ -3,6 +3,8 @@ name: TechTrends - Package with Docker
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v*'
     
 jobs:
   build:
@@ -14,6 +16,23 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            mengjinfeng0331/techtrends
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha            
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -35,3 +54,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techtrends:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

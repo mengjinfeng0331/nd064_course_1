@@ -45,11 +45,24 @@ def index():
 
 @app.route('/healthz')
 def health():
-    response = app.response_class(
-        response=json.dumps({"result": "OK - healthy"}),
-        status=200,
-        mimetype='application/json'
-    )
+    healthy = True
+    try:
+        index()
+    except:
+        healthy = False
+
+    if healthy:
+        response = app.response_class(
+            response=json.dumps({"result": "OK - healthy"}),
+            status=200,
+            mimetype='application/json'
+        )
+    else:
+        response = app.response_class(
+            response=json.dumps({"result": "ERROR - unhealthy"}),
+            status=500,
+            mimetype='application/json'
+        )
 
     app.logger.info('health Status request successfull')
     return response
@@ -130,4 +143,4 @@ if __name__ == "__main__":
     handler2.setFormatter(formatter)
     app.logger.addHandler(handler2)
 
-    app.run(host='0.0.0.0', port='3111', debug=True)
+    app.run(host='0.0.0.0', port=3111, debug=True)
